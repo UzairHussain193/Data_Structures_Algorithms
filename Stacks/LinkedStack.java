@@ -1,5 +1,5 @@
 
-public class LinkedStack implements Stack{
+public class LinkedStack {
     private Node node;
     private int size;
  
@@ -13,12 +13,12 @@ public class LinkedStack implements Stack{
             next=n;
         }
     }
-     @Override
+    //  @Override
     public Object peek() { 
         return node.obj;
     }
  
-    @Override
+    // @Override
     public Object pop() {      
         Object o=node.obj;
         node=node.next;
@@ -26,13 +26,13 @@ public class LinkedStack implements Stack{
         return o;
     }
  
-    @Override
+    // @Override
     public void push(Object object) {
         node=new Node(object,node);
         size++;    
     }
  
-    @Override
+    // @Override
     public int size() {
         return size;
     }

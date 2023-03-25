@@ -60,7 +60,7 @@ public class BinaryTreesYT {
         if(root == null) {
             return;
         }
-        Queue<Node> q = new LinkedList<>();
+        Queue<Node> q = new Queue<>();
         q.add(root);
         q.add(null);
         while(!q.isEmpty()) {

@@ -97,13 +97,15 @@ public class BinaryTree {
         BinaryTree b5 = new BinaryTree("C",null,b4);
         BinaryTree b6 = new BinaryTree("A",b3,b5);
 
-        System.out.println(b3.getroot());
-        System.out.println(b3.getleft());
-        System.out.println(b3.getright());
+        // System.out.println(b6.PostOrder());
+        // System.out.println(b6.PreOrder());
+        // System.out.println(b3.getroot());
+        // System.out.println(b3.getleft());
+        // System.out.println(b3.getright());
 
-        System.out.println(b6.toString());
+        // System.out.println(b6.toString());
         System.out.println(b6.size(b6));
-        System.out.println(b6.isFull(b6));
-        System.out.println(b6.height(b6));
+        // System.out.println(b6.isFull(b6));
+        // System.out.println(b6.height(b6));
     }   
 }
