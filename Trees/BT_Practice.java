@@ -27,7 +27,7 @@ public class BT_Practice {
     public String Inorder(){
         StringBuffer buf= new StringBuffer();
         if(this.left!=null){
-            buf.append(left.Inorder()+ ",")
+            buf.append(left.Inorder()+ ",");
         }
         buf.append(this.root);
         if(this.right!=null){
@@ -85,28 +85,31 @@ public class BT_Practice {
         }
         return false;
     }
-    public Object search(BT_Practice root){
-        if(this.root==root){
-            return root;
+    public boolean search(Object value) {
+        boolean inLeft = false, inRight = false;
+        if (root == null){
+            return false;
         }
-        if(left!=null){
-            if(left==root){
-                return left;
-            }
+        if (root.equals(value)){
+            return true;
         }
-        if(right!=null){
-            if(right==root){
-                return right;
-            }
+        if (left!=null) {
+            inLeft = left.search(value);
         }
-        return "Not Found";
+        if (right!=null) {
+            inRight = right.search(value);
+        }
+        if (inLeft || inRight){
+            return true;
+        }
+        return false;
     }
     
     public String Preorder(){
         StringBuffer buf= new StringBuffer();
         buf.append(this.root);
         if(this.left!=null){
-            buf.append(left.Preorder()+ ",")
+            buf.append(left.Preorder()+ ",");
         }
         if(this.right!=null){
             buf.append(right.Preorder()+",");
@@ -116,7 +119,7 @@ public class BT_Practice {
     public String Postorder(){
         StringBuffer buf= new StringBuffer();
         if(this.left!=null){
-            buf.append(left.Postorder()+ ",")
+            buf.append(left.Postorder()+ ",");
         }
         if(this.right!=null){
             buf.append(right.Postorder()+",");
@@ -134,7 +137,8 @@ public class BT_Practice {
 
         System.out.println(b6.size(b6));
         System.out.println(b6.height(b6));
-        System.out.println(b6.search(b4));
+        System.out.println(b6.search("N"));
+        System.out.println(b6.Postorder());
         // System.out.println(b6.isFull(b6));
     }
 
