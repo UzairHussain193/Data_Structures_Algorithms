@@ -63,7 +63,6 @@ public class LinkedStack {
         for(Node temp=node;temp!=null;temp=temp.next){
             arr=placing(arr, temp.obj);
         }
- 
     return arr;
     }
      

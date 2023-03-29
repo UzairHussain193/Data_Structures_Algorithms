@@ -1,12 +1,14 @@
-public class BT_Practice {
-    Object root;
-    BT_Practice right, left;
+package Finals;
 
-    public BT_Practice(Object root) {
+class BinaryTree {
+    Object root;
+    BinaryTree right, left;
+
+    public BinaryTree(Object root) {
         this.root = root;
     }
 
-    public BT_Practice(Object root, BT_Practice left, BT_Practice right) {
+    public BinaryTree(Object root, BinaryTree left, BinaryTree right) {
         this.root = root;
         this.right = right;
         this.left = left;
@@ -16,11 +18,11 @@ public class BT_Practice {
         return root;
     }
 
-    public BT_Practice getright() {
+    public BinaryTree getright() {
         return right;
     }
 
-    public BT_Practice getlrft() {
+    public BinaryTree getlrft() {
         return left;
     }
 
@@ -99,28 +101,28 @@ public class BT_Practice {
         }
         return max;
     }
-    public int size(BT_Practice node) {
+    public int size(BinaryTree node) {
         if (node == null)
             return 0;
         else
             return (size(node.left) + 1 + size(node.right));
     }
 
-    public int height(BT_Practice root) {
+    public int height(BinaryTree root) {
         if (root == null) {
             return 0;
         }
         return Math.max(height(root.left), height(root.right)) + 1;
     }
 
-    public boolean isFull2(BT_Practice root) {
+    public boolean isFull2(BinaryTree root) {
         double size = Math.pow(2, root.height() + 1);
         if (size - 1 == root.size()) {
             return true;
         }
         return false;
     }
-    public boolean isFull(BT_Practice root) {
+    public boolean isFull(BinaryTree root) {
         if(root==null){
             return true;
         }
@@ -154,19 +156,20 @@ public class BT_Practice {
     }
 
     public static void main(String[] args) {
-        BT_Practice b1 = new BT_Practice(4);
-        BT_Practice b2 = new BT_Practice(5);
-        BT_Practice b3 = new BT_Practice(2, b1, b2);
-        BT_Practice b4 = new BT_Practice(6);
-        BT_Practice b5 = new BT_Practice(7);
-        BT_Practice b6 = new BT_Practice(3,b4,b5);
-        BT_Practice b7 = new BT_Practice(1, b3, b6);
-        // BT_Practice b1 = new BT_Practice("D");
-        // BT_Practice b2 = new BT_Practice("E");
-        // BT_Practice b3 = new BT_Practice("B", b1, b2);
-        // BT_Practice b4 = new BT_Practice("F");
-        // BT_Practice b5 = new BT_Practice("C", null, b4);
-        // BT_Practice b6 = new BT_Practice("A", b3, b5);
+        BinaryTree b1 = new BinaryTree(4);
+        BinaryTree b2 = new BinaryTree(5);
+        BinaryTree b3 = new BinaryTree(2, b1, b2);
+        BinaryTree b4 = new BinaryTree(6);
+        BinaryTree b5 = new BinaryTree(7);
+        BinaryTree b6 = new BinaryTree(3,b4,b5);
+        BinaryTree b7 = new BinaryTree(1, b3, b6);
+        
+        // BinaryTree b1 = new BinaryTree("D");
+        // BinaryTree b2 = new BinaryTree("E");
+        // BinaryTree b3 = new BinaryTree("B", b1, b2);
+        // BinaryTree b4 = new BinaryTree("F");
+        // BinaryTree b5 = new BinaryTree("C", null, b4);
+        // BinaryTree b6 = new BinaryTree("A", b3, b5);
 
         System.out.println("Size: " + b7.size(b7));
         System.out.println("Height: " + b7.height(b7));

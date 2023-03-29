@@ -5,23 +5,24 @@ interface Queue{
     public Object remove();
     public int size(); 
 }
-
+class QueueNode{
+    Object object;
+    QueueNode prev=this;
+    QueueNode next=this;
+    QueueNode(Object obj){
+        this.object=obj;
+    }
+    QueueNode(Object obj, QueueNode n,QueueNode p){
+        object=obj;
+        next=n;
+        prev=p;
+    }
+} 
 public class LinkedQueue implements Queue{
-    private Node head=new Node(null);
+    QueueNode head=new QueueNode(null);
     private int size;
-    private static class Node{
-        Object object;
-        Node prev=this;
-        Node next=this;
-        Node(Object obj){
-            this.object=obj;
-        }
-        Node(Object obj, Node n,Node p){
-            object=obj;
-            next=n;
-            prev=p;
-        }
-    } 
+
+    
     @Override
     public int size(){
         return size;
@@ -35,7 +36,7 @@ public class LinkedQueue implements Queue{
     }
     @Override
     public void add(Object obj){
-        head.prev.next=new Node(obj,head,head.prev);
+        head.prev.next=new QueueNode(obj,head,head.prev);
         head.prev=head.prev.next;
         size++;
     }
@@ -44,7 +45,7 @@ public class LinkedQueue implements Queue{
         if(size==0){
             throw new IllegalStateException();
         }
-        for(Node t=head.next;t!=null;t=t.next){
+        for(QueueNode t=head.next;t!=null;t=t.next){
             if(t.object.equals(obj)){
                 return true;
             }
@@ -53,7 +54,7 @@ public class LinkedQueue implements Queue{
     }
     public String toString(){
         StringBuilder b=new StringBuilder("[");
-        for(Node t=head.next;t!=null;t=t.next){
+        for(QueueNode t=head.next;t!=null;t=t.next){
             b.append(t.object);
             if(t.next!=head){
                 b.append(",");
@@ -62,6 +63,15 @@ public class LinkedQueue implements Queue{
         b.append("]");
         String s=b.toString();
         return s;       
+    }
+    public void display(){
+        QueueNode a= head.next;
+        int i=0;
+        while(a!=head){
+            System.out.println((i+1)+" : "+a.object);
+            a=a.next;
+            i++;
+        }
     }
     public Object last(){
         if(size==0){
@@ -85,13 +95,25 @@ public class LinkedQueue implements Queue{
     }
     public Object[] toArray(){
         Object[] aa=new Object[size];
-        Node t=head.next;
+        QueueNode t=head.next;
         for(int i=0;i<size;i++){
             aa[i]=t.object;
             t=t.next;
-            
         }
         return aa;
+    }
+    public static void main(String[] args) {
+        LinkedQueue a = new LinkedQueue();
+        Object[] arr= {"Abbas","LAHAD","uzair","Razi"};
+
+        for(int i=0;i<arr.length;i++){
+            a.add(arr[i]);
+        }
+        // System.out.println(a.first());
+        // System.out.println(a.last());
+        a.display();
+        
+
     }
     
 }

@@ -1,18 +1,21 @@
-public class Hashtable2 {
-    static class Node{
-        Object key;
-        Object value;
-        Node next;
-    }
-    Node[] table_array;
+package Finals;
+
+class Hash_Node{
+    Object key;
+    Object value;
+    Hash_Node next;
+}
+public class Hashtables {
+    
+    Hash_Node[] table_array;
     int count=0;
     
-    Hashtable2(int size){
-        table_array= new Node[size];
+    Hashtables(int size){
+        table_array= new Hash_Node[size];
     }
     public void put(Object key2,Object value2){
         int bucket=hash(key2);
-        Node list= table_array[bucket];
+        Hash_Node list= table_array[bucket];
         while(list!=null){
             if(list.key.equals(key2)){
                 break;
@@ -26,7 +29,7 @@ public class Hashtable2 {
             if(count>=(0.75*table_array.length)){
                 resize();
             }
-            Node newnode= new Node();
+            Hash_Node newnode= new Hash_Node();
             newnode.key=key2;
             newnode.value=value2;
             newnode.next=table_array[bucket];
@@ -36,7 +39,7 @@ public class Hashtable2 {
     }
     public void put_Linear_Probing(Object key2, Object value2) {
         int bucket = hash(key2);
-        Node list = table_array[bucket];
+        Hash_Node list = table_array[bucket];
         int i = 0;
         while (list != null) {
             if (list.key.equals(key2)) {
@@ -51,7 +54,7 @@ public class Hashtable2 {
             resize();
             put(key2, value2);
         } else {
-            Node newnode = new Node();
+            Hash_Node newnode = new Hash_Node();
             newnode.key = key2;
             newnode.value = value2;
             table_array[bucket] = newnode;
@@ -61,7 +64,7 @@ public class Hashtable2 {
     
     public Object get(Object key){
         int bucket=hash(key);
-        Node list=table_array[bucket];
+        Hash_Node list=table_array[bucket];
         while(list!=null){
             if(list.key.equals(key)){
                 return list.value;
@@ -70,12 +73,12 @@ public class Hashtable2 {
         }
         return null;
     }
-    private void resize() {
-        Node[] newTable_array = new Node[table_array.length*2];
+    void resize() {
+        Hash_Node[] newTable_array = new Hash_Node[table_array.length*2];
         for(int i=0;i<table_array.length;i++){
-            Node list= table_array[i];
+            Hash_Node list= table_array[i];
             while(list!=null){
-                Node next = list.next;
+                Hash_Node next = list.next;
                 int hash=(Math.abs(list.key.hashCode()))%newTable_array.length;
                 list.next=newTable_array[hash];
                 newTable_array[hash]=list;
@@ -85,9 +88,9 @@ public class Hashtable2 {
         table_array=newTable_array;
     }
     public void display(){
-        for(int i=0;i<table_array.length;i++){
+        for(int i=0;i<table_array.length-1;i++){
             System.out.print((i+1)+ " ");
-            Node list= table_array[i];
+            Hash_Node list= table_array[i];
             while(list!=null){
                 System.out.print("( " + list.key + " , " + list.value + " )");
                 list=list.next;
@@ -109,8 +112,8 @@ public class Hashtable2 {
             count--;
             return;
         }
-        Node prev = table_array[bucket];
-        Node curr = prev.next;
+        Hash_Node prev = table_array[bucket];
+        Hash_Node curr = prev.next;
         while(curr != null && curr.key.equals(key)){
             curr=curr.next;
             prev=curr;
@@ -122,7 +125,7 @@ public class Hashtable2 {
     }
     public boolean contains(Object key){
         int bucket=hash(key);
-        Node list = table_array[bucket];
+        Hash_Node list = table_array[bucket];
         while(list!=null){
             if(list.key.equals(key)){
                 return true;
@@ -132,15 +135,15 @@ public class Hashtable2 {
         return false;
     }
     public static void main(String[] args) {
-        Hashtable2 a = new Hashtable2(5);
-        Object[] keys={"A","B","C","D"};
-        Object[] values={10,20,30,40};
+        Hashtables a = new Hashtables(5);
+        Object[] values={"A","B","C","D","E"};
+        Object[] keys={1,2,3,4,5};
 
         for(int i=0;i<keys.length;i++){
-            a.put_Linear_Probing(keys[i], values[i]);
+            a.put(keys[i], values[i]);
         }
         System.out.println(a.get("C"));
-        a.remove("C");
+        // a.remove("C");
         System.out.println(a.contains("F"));
         // System.out.println(a.get("C"));
         a.display();
@@ -148,4 +151,5 @@ public class Hashtable2 {
 
     }
 }
+
 

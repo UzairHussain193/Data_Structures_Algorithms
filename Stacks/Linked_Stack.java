@@ -1,24 +1,25 @@
-import java.lang.Exception;
 
-class Linked_Stack{
-    static class Node{
-        Node next;
-        String data;
-        public Node(String data){
-            this.data=data;
-        }
+
+class Node{
+    QueueNode next;
+    String data;
+    public Node(String data){
+        this.data=data;
     }
-    Node head;
+}
+class Linked_Stack{
+    
+    QueueNode head;
     int size;
     public Linked_Stack(){
         head=null;
         size=0;
     }
     void push(String data){
-        Node temp=new Node(data);
+        QueueNode temp=new QueueNode(data);
         temp.next=head;
-        size++;
         head=temp;
+        size++;
     }
     String peek(){
         if(head==null){
@@ -42,7 +43,7 @@ class Linked_Stack{
     }
     public Object[] toArrayStack(){
         Object[] a=new Object[size];
-        Node current=head;
+        QueueNode current=head;
         int i;
         for(current=head,i=0;current!=null;current=current.next,i++){
             a[i]=current.data;

@@ -1,3 +1,4 @@
+package Finals;
 import java.util.Scanner;
 
 
@@ -63,13 +64,12 @@ public class BST {
         else{
             return search(root.right, value);
         }
-        // return root;
     }
     public static Node delete(Node root, int value){
-        if(root.data>value){
+        if(value<root.data){
             root.left=delete(root.left, value);
         }
-        else if(root.data<value){
+        else if(value>root.data){
             root.right=delete(root.right, value);
         }
         else{// ROOT.data = value
@@ -102,6 +102,7 @@ public class BST {
         return root;
     }
     public static void main(String[] args) {
+        Scanner s= new Scanner(System.in);
         int[] values={5,1,3,4,2,7};
         Node root=null;
         for(int i=0;i<values.length;i++){
@@ -115,15 +116,8 @@ public class BST {
         PreOrder(root);
         System.out.print("\nPost Order traversal: ");
         Postorder(root);
-        Scanner s= new Scanner(System.in);
-        System.out.print("\nEnter value to search: ");
-        int a= s.nextInt();
         
-        if(search(root, a)){
-            System.out.println("Found!");
-        }else{
-            System.out.println("Not Found!");
-        }
+        
 
         delete(root, 4);
         System.out.println("\nAfter deleting 4");
@@ -133,11 +127,12 @@ public class BST {
         PreOrder(root);
         System.out.print("\nPost Order traversal: ");
         Postorder(root);
-        
-        // if(search(root, a)){
-        //     System.out.println("Found");
-        // }else{
-        //     System.out.println("Not Found");
-        // }
+        System.out.print("\nEnter value to search: ");
+        int a= s.nextInt();
+        if(search(root, a)){
+            System.out.println("Found");
+        }else{
+            System.out.println("Not Found");
+        }
     }
 }
