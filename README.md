@@ -17,6 +17,7 @@ The following data structures are currently implemented in this repository:
 - Hash Table
 - Hash Map
 - Recurrsion
+- Graphs
 
 ## Algorithms
 
@@ -24,7 +25,7 @@ The following algorithms are currently implemented in this repository:
 
 - Sorting Algorithms (Bubble Sort, Insertion Sort, Selection Sort, Merge Sort, Quick Sort)
 - Searching Algorithms (Linear Search, Binary Search)
-
+- Graph's Algorithm ( Dijkstra's Algorithm )
 
 # How to contribute
 
