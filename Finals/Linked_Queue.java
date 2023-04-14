@@ -1,4 +1,5 @@
 package Finals;
+
 interface Queue{
     public void add(Object obj);
     public Object first();
@@ -45,12 +46,12 @@ public class Linked_Queue implements Queue{
     public boolean isEmpty(){
         return (head==null);
     }
-    public boolean equals(Object o){
+    public boolean equals(Object object){
         if(size==0){
             throw new IllegalStateException();
         }
         for(Queue_Node temp=head.next;temp!=null;temp=temp.next){
-            if(temp.obj.equals(o)){
+            if(temp.obj.equals(object)){
                 return true;
             }
         }
@@ -94,14 +95,15 @@ public class Linked_Queue implements Queue{
         for(int i=0;i<array.length;i++){
             l.add(array[i]);
         }
+        
         System.out.println("First : "+l.first());
         System.out.println("Last : "+ l.last());
         System.out.println("Empty ? : "+l.isEmpty());
         System.out.println("Size : "+l.size());
-        System.out.println("Equals (Abbas) ? : "+l.equals("Abbas"));
+        System.out.println("Equals (abbas) ? : "+l.equals("abbas"));
         l.Print();
-        Object mid = l.findMiddle();
-        System.out.println("Middle : "+mid);
+        // Object mid = l.findMiddle();
+        // System.out.println("Middle : "+mid);
         // System.out.println("After removing top most element : "+l.remove());
         // l.Print();
 

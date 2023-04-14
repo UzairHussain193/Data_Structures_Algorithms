@@ -99,7 +99,7 @@ public class Hashtables {
         }
     }
     public int hash(Object key){
-        return (Math.abs(key.hashCode()))%table_array.length;
+        return (key.hashCode() & 0x7fffffff) %table_array.length;
     }
 
     public void remove(Object key){

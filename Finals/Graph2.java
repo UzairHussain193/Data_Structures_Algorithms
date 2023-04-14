@@ -11,7 +11,7 @@ public class Graph2 {
         adjacencyMatrix = new int[a.length][a.length];
     }
 
-    public void insertEdge(int a, int b) {
+    public void insertEdges(int a, int b) {
         adjacencyMatrix[a][b] = adjacencyMatrix[b][a] = 1;
     }
 
@@ -22,14 +22,15 @@ public class Graph2 {
             System.out.println("One of the elements doen't exist");
             return;
         }
-        insertEdge(x, y);
+        insertEdges(x, y);
     }
 
     public int getIndex(Object a) {
         int i = 0;
         while (i < members.length) {
-            if (a.equals(members[i]))
+            if (a.equals(members[i])){
                 return i;
+            }
             i++;
         }
         return -1;

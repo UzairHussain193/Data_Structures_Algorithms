@@ -2,8 +2,8 @@ package Finals;
 
 public class LinearProbing {
 
-    private int capacity;     // the size of hashtable
     private int size;          // the number of key-value pairs currently stored
+    private int capacity;     // the size of hashtable
     private Object[] keys;    // array to store keys
     private Object[] values;    // array to store values
 
@@ -54,12 +54,13 @@ public class LinearProbing {
     }  // end of rehash()
 
     public void put(Object key, Object value){
+        // checking load factor
         if ((double)size / capacity > 0.75) {
             rehash();
         }
         int index = hash(key);
         while (keys[index]!=null && !keys[index].equals(key)){     // loop till end and until value associated with key is not found
-            index = index + 1 % capacity; // Move to the next index using linear probing
+            index = (index + 1) % capacity; // Move to the next index using linear probing
         }
         if (keys[index] == null){
             size++;
@@ -73,9 +74,22 @@ public class LinearProbing {
         while (keys[index] != null && !keys[index].equals(key)) {   // loop till end and until value associated with key is not found
             index = (index + 1) % capacity; // Move to the next index using linear probing
         }
-        return keys[index] == null ? null : values[index]; // Return the value associated with the key, or null if the key is not found
+        if (keys[index] == null) {
+            return null;
+        } else {
+            return values[index];
+        }
+        // we can use below line for above if conditions
+        // return keys[index] == null ? null : values[index]; // Return the value associated with the key, or null if the key is not found
     }       // end of get()
 
+    public void display() {
+        for (int i = 0; i < capacity; i++) {
+            if (keys[i] != null) {
+                System.out.println(keys[i] + " -> " + values[i]);
+            }
+        }
+    }    
 
     public void remove(Object key){
         if (!contains(key)){
@@ -87,13 +101,13 @@ public class LinearProbing {
         }
         keys[index] = values[index] = null;
         size--;
-        for (int i= (index+1) % capacity; keys[i]!=null; i = (index+1) % capacity ){
-            Object temp1 = keys[i], temp2 = values[i];
-            keys[index] = keys[i];
-            values[index] = values[i];
-            keys[i] = values[i] = null;
-            index = i;
-        }
+        // for (int i= index ; keys[i]!=null; i = (index+1) % capacity ){
+        //     // Object temp1 = keys[i], temp2 = values[i];
+        //     keys[index] = keys[i];
+        //     values[index] = values[i];
+        //     keys[i] = values[i] = null;
+        //     index = i;
+        // }
     }     // end of remove()
 
     public static void main(String[] args) {
@@ -111,9 +125,9 @@ public class LinearProbing {
         System.out.println(lp.contains(3));
 
         System.out.println(lp.size());
-        lp.remove(5);
+        lp.remove(7);
         System.out.println(lp.size());
-
+        lp.display();
 
     }
 }
